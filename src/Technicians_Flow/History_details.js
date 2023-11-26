@@ -2,8 +2,11 @@ import { StyleSheet, View, Image, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView } from "react-native-gesture-handler";
 import { useEffect } from "react";
+import { StatusBar } from "react-native";
 
 export const History_details = (props) => {
+  StatusBar.setBarStyle("light-content");
+
   console.log(props.route.params);
   const ser_dtls = props.route.params.item;
   //   const tech_dtls = props.route.params.tech_dtls;
@@ -13,7 +16,7 @@ export const History_details = (props) => {
   // });
 
   return (
-    <SafeAreaView>
+    <View>
       <View style={styles.logocontainer}>
         <Image
           source={require("./logo2-removebg-preview.png")}
@@ -110,13 +113,15 @@ export const History_details = (props) => {
                 <Text style={styles.innertxt}>Technician Charges:</Text>
                 {ser_dtls.tech_charges}
                 {"\n"}
-                <Text style={styles.innertxt}>Total Bill :</Text>800
+                <Text style={styles.innertxt}>Total Bill :</Text>
+                {parseInt(ser_dtls.tech_charges) +
+                  parseInt(ser_dtls.cost_of_spareparts)}
               </Text>
             </View>
           </View>
         </ScrollView>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 

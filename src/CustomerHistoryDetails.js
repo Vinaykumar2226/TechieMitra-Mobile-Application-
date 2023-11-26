@@ -4,12 +4,15 @@ import { ScrollView } from "react-native-gesture-handler";
 import { useEffect, useState } from "react";
 import { TextInput, Button } from "react-native-paper";
 import { supabase } from "./Database";
+import { StatusBar } from "react-native";
 
 export const CustomerHistoryDetails = (props) => {
+  StatusBar.setBarStyle("light-content");
+
   console.log(props.route.params);
   const ser_dtls = props.route.params.item;
   //   const tech_dtls = props.route.params.tech_dtls;
-  console.log(ser_dtls);
+  console.log(ser_dtls.status);
 
   const [defaultrating, setDefaultrating] = useState(2);
   const [maxrating, setMaxrating] = useState([1, 2, 3, 4, 5]);
@@ -64,7 +67,7 @@ export const CustomerHistoryDetails = (props) => {
   };
 
   return (
-    <SafeAreaView>
+    <View>
       <View style={styles.logocontainer}>
         <Image
           source={require("./logo2-removebg-preview.png")}
@@ -161,12 +164,20 @@ export const CustomerHistoryDetails = (props) => {
                 <Text style={styles.innertxt}>Technician Charges:</Text>
                 {ser_dtls.tech_charges}
                 {"\n"}
-                <Text style={styles.innertxt}>Total Bill :</Text>800
+                <Text style={styles.innertxt}>Total Bill :</Text>
+                {parseInt(ser_dtls.cost_of_spareparts) +
+                  parseInt(ser_dtls.tech_charges)}
               </Text>
             </View>
           </View>
           <View
-            style={{ padding: 20, display: ser_dtls.rating ? "none" : "flex" }}
+            style={{
+              padding: 20,
+              display:
+                !ser_dtls.rating && ser_dtls.status == "Completed"
+                  ? "flex"
+                  : "none",
+            }}
           >
             <Text style={{ fontSize: 20 }}>
               Please Write a Review for Service Provider:
@@ -193,7 +204,7 @@ export const CustomerHistoryDetails = (props) => {
           </View>
         </ScrollView>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 

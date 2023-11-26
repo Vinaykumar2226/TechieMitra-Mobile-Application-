@@ -14,7 +14,7 @@ import { Alert } from "react-native";
 import { supabase } from "./Database";
 import { useFocusEffect } from "@react-navigation/native";
 import { BackHandler } from "react-native";
-// import Picker from "@react-native-picker/picker";
+import { StatusBar } from "react-native";
 
 export const CustomerDashboard = (props) => {
   const [selected, setSelected] = useState("");
@@ -23,13 +23,15 @@ export const CustomerDashboard = (props) => {
   console.log(props.route.params.cusdata);
   const cusdata = props.route.params.cusdata;
 
+  StatusBar.setBarStyle("light-content");
+
   useFocusEffect(
     React.useCallback(() => {
       const handleBackPress = () => {
         // Display an alert when the back button is pressed
         Alert.alert(
           "Exit App",
-          "Are you sure you want to logged out and exit?",
+          "Are you sure you want to log out",
           [
             {
               text: "Cancel",
@@ -37,10 +39,12 @@ export const CustomerDashboard = (props) => {
               style: "cancel",
             },
             {
-              text: "Exit",
+              text: "Yes",
               onPress: () => {
                 // Perform any additional cleanup or exit actions if needed
-                BackHandler.exitApp(); // Exit the app
+                props.navigation.goBack();
+                props.navigation.goBack();
+                props.navigation.goBack(); // Exit the app
               },
             },
           ],
@@ -157,7 +161,7 @@ export const CustomerDashboard = (props) => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.logocontainer}>
         <Image
           source={require("../assets/logo2-removebg-preview.png")}
@@ -276,13 +280,13 @@ export const CustomerDashboard = (props) => {
           </View>
         </ScrollView>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: Constants.statusBarHeight,
+    // paddingTop: Constants.statusBarHeight,
   },
   logocontainer: {
     backgroundColor: "rgba(0,0,0,0.8)",

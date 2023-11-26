@@ -9,8 +9,11 @@ import {
 } from "react-native-paper";
 import { useState, useEffect } from "react";
 import { supabase } from "../Database";
+import { StatusBar } from "react-native";
 
 export const Tech_SerDtls = (props) => {
+  StatusBar.setBarStyle("light-content");
+
   const [isDialogVisible, setIsDialogVisible] = useState(false);
 
   const [accept, setAccept] = useState(false);
@@ -40,9 +43,6 @@ export const Tech_SerDtls = (props) => {
       .eq("user_email", `${ser_dtls.user_email}`)
       .eq("store_email", `${ser_dtls.store_email}`);
     console.log(error);
-
-    // fetch(`http://192.168.61.12:3000/data?query=
-    //   update servicedetails set status='In Progress' where user_email='${ser_dtls.user_email}'`);
   }
 
   async function onWorkCompleted() {
@@ -51,9 +51,6 @@ export const Tech_SerDtls = (props) => {
       .update({ status: "Completed" })
       .eq("user_email", `${ser_dtls.user_email}`)
       .eq("store_email", `${ser_dtls.store_email}`);
-
-    // fetch(`http://192.168.61.12:3000/data?query=
-    //   update servicedetails set status='Completed' where user_email='${ser_dtls.user_email}'`).then(
     props.navigation.navigate("Tech_Dtls", { ser_dtls });
   }
 
@@ -68,17 +65,10 @@ export const Tech_SerDtls = (props) => {
     setIsDialogVisible(false);
     props.navigation.goBack();
     props.navigation.goBack();
-
-    // fetch(`http://192.168.61.12:3000/data?query=
-    //   update servicedetails set status='Rejected',reject_service='${rejreason}' where user_email='${ser_dtls.user_email}'`)
-    //   .then(() => alert("Thanks for responding"))
-    //   .then(() => setIsDialogVisible(false))
-    //   .then(() => props.navigation.goBack())
-    //   .then(() => props.navigation.goBack());
   }
 
   return (
-    <SafeAreaView>
+    <View>
       <View style={styles.logocontainer}>
         <Image
           source={require("./logo2-removebg-preview.png")}
@@ -194,7 +184,7 @@ export const Tech_SerDtls = (props) => {
           </Portal>
         </View>
       </Provider>
-    </SafeAreaView>
+    </View>
   );
 };
 

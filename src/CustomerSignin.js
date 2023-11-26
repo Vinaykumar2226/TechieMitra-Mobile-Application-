@@ -13,8 +13,11 @@ import {
 import Constants from "expo-constants";
 import { Checkbox } from "react-native-paper";
 import { supabase } from "./Database";
+import { StatusBar } from "react-native";
 
 export const CustomerSignin = (props) => {
+  StatusBar.setBarStyle("light-content");
+
   const [checked, setChecked] = React.useState(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -26,6 +29,20 @@ export const CustomerSignin = (props) => {
   const emailRegx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const passRegx =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+  const tc = `1. Acceptance of Terms
+  By using the Service, you agree to these Terms and any additional terms and policies referenced herein.
+
+  
+  2. Privacy
+  
+  Your use of the Service is also governed by our Privacy Policy, which is available at [link to privacy policy]. Please review our Privacy Policy to understand how we collect, use, and disclose information.
+  
+  3. User Registration
+  
+  a. To access certain features of the Service, you may be required to register for an account. You agree to provide accurate and complete information during the registration process.
+  
+  b. You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account.`;
 
   async function handlePress() {
     if (firstName && lastName && email && mobile && password && rePassword) {
@@ -39,9 +56,6 @@ export const CustomerSignin = (props) => {
                 Username: `${firstName}`,
                 Mobile: `${mobile}`,
               });
-              // fetch(
-              //   `http://10.68.21.244:3000/data?query=insert into CustomerAuth values('${email}','${password}','${firstName}','${mobile}')`
-              // );
               alert(
                 "Created account successfully.Now Login with your credentials"
               );
@@ -66,7 +80,7 @@ export const CustomerSignin = (props) => {
   }
 
   return (
-    <View style={{ paddingTop: Constants.statusBarHeight }}>
+    <View>
       <ImageBackground
         source={require("../assets/bcg.jpg")}
         style={styles.back}
@@ -143,12 +157,7 @@ export const CustomerSignin = (props) => {
                 }}
               />
               <TouchableOpacity
-                onPress={() =>
-                  Alert.alert(
-                    "Terms And Conditions",
-                    "Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum"
-                  )
-                }
+                onPress={() => Alert.alert("Terms And Conditions", tc)}
               >
                 <Text style={{ color: "white", marginTop: 5 }}>
                   Terms and Conditionss

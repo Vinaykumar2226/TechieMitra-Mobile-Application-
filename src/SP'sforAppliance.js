@@ -9,9 +9,11 @@ import {
 } from "react-native";
 import Constants from "expo-constants";
 import { supabase } from "./Database";
+import { StatusBar } from "react-native";
 
 export const SPsforAppliance = (props) => {
   const [serpro, setSerpro] = useState();
+  StatusBar.setBarStyle("light-content");
 
   async function retrive() {
     const dat = await supabase.from("spdetails").select("*");
@@ -23,11 +25,6 @@ export const SPsforAppliance = (props) => {
   const cusdata = props.route.params.cusdata;
 
   useEffect(() => {
-    //   fetch(`http://192.168.61.12:3000/data?query=select * from spdtls`)
-    //     .then((response) => response.json())
-    //     .then((json) => setSerpro(json));
-    //   console.log(serpro);
-
     retrive();
     console.log(serpro);
   }, []);
@@ -117,8 +114,9 @@ export const SPsforAppliance = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: Constants.statusBarHeight,
+    // paddingTop: Constants.statusBarHeight,
     backgroundColor: "white",
+    flex: 1,
   },
   logocontainer: {
     backgroundColor: "rgba(0,0,0,0.8)",
@@ -152,96 +150,3 @@ const styles = StyleSheet.create({
     height: 200,
   },
 });
-
-// <ScrollView>
-//           <View style={{ flexDirection: "row" }}>
-//             <Image
-//               source={require("../assets/splogo.png")}
-//               style={styles.splogog}
-//             />
-//             <View style={{ top: 60, right: 10 }}>
-//               <TouchableOpacity
-//                 onPress={() => props.navigation.navigate("SpProfile")}
-//               >
-//                 <Text
-//                   style={{ fontSize: 18, fontWeight: "bold", flexWrap: "wrap" }}
-//                 >
-//                   VK Appliance Repairs
-//                 </Text>
-//                 <Text style={{ paddingTop: 15 }}>Jublee Hills , Hyderabad</Text>
-//                 <Text> Ratings : 4/5</Text>
-//               </TouchableOpacity>
-//             </View>
-//           </View>
-//           <View style={{ flexDirection: "row" }}>
-//             <Image
-//               source={require("../assets/splogo.png")}
-//               style={styles.splogog}
-//             />
-//             <View style={{ top: 60, right: 10 }}>
-//               <TouchableOpacity>
-//                 <Text
-//                   style={{ fontSize: 18, fontWeight: "bold", flexWrap: "wrap" }}
-//                 >
-//                   VK Appliance Repairs
-//                 </Text>
-//                 <Text style={{ paddingTop: 15 }}>Jublee Hills , Hyderabad</Text>
-//                 <Text> Ratings : 4/5</Text>
-//               </TouchableOpacity>
-//             </View>
-//           </View>
-//           <View style={{ flexDirection: "row" }}>
-//             <Image
-//               source={require("../assets/splogo.png")}
-//               style={styles.splogog}
-//             />
-//             <View style={{ top: 60, right: 10 }}>
-//               <TouchableOpacity>
-//                 <Text
-//                   style={{ fontSize: 18, fontWeight: "bold", flexWrap: "wrap" }}
-//                 >
-//                   VK Appliance Repairs
-//                 </Text>
-//                 <Text style={{ paddingTop: 15 }}>Jublee Hills , Hyderabad</Text>
-//                 <Text> Ratings : 4/5</Text>
-//               </TouchableOpacity>
-//             </View>
-//           </View>
-//           <View style={{ flexDirection: "row" }}>
-//             <Image
-//               source={require("../assets/splogo.png")}
-//               style={styles.splogog}
-//             />
-//             <View style={{ top: 60, right: 10 }}>
-//               <TouchableOpacity>
-//                 <Text
-//                   style={{ fontSize: 18, fontWeight: "bold", flexWrap: "wrap" }}
-//                 >
-//                   VK Appliance Repairs
-//                 </Text>
-//                 <Text style={{ paddingTop: 15 }}>Jublee Hills , Hyderabad</Text>
-//                 <Text> Ratings : 4/5</Text>
-//               </TouchableOpacity>
-//             </View>
-//           </View>
-//         </ScrollView>
-
-// <View style={{ flexDirection: "row" }}>
-//             <Image
-//               source={require("../assets/splogo.png")}
-//               style={styles.splogog}
-//             />
-//             <View style={{ top: 60, right: 10 }}>
-//               <TouchableOpacity
-//                 onPress={() => props.navigation.navigate("SpProfile")}
-//               >
-//                 <Text
-//                   style={{ fontSize: 18, fontWeight: "bold", flexWrap: "wrap" }}
-//                 >
-//                   VK Appliance Repairs
-//                 </Text>
-//                 <Text style={{ paddingTop: 15 }}>Jublee Hills , Hyderabad</Text>
-//                 <Text> Ratings : 4/5</Text>
-//               </TouchableOpacity>
-//             </View>
-//           </View>

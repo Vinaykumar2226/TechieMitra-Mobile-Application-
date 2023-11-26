@@ -4,8 +4,11 @@ import Constants from "expo-constants";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useState, useEffect } from "react";
 import { supabase } from "./Database";
+import { StatusBar } from "react-native";
 
 export const CustomerHistory = (props) => {
+  StatusBar.setBarStyle("light-content");
+
   const [ser_dtls, setSer_dtls] = useState("");
   const cusdata = props.route.params.cusdata;
   console.log(cusdata.Email);
@@ -21,12 +24,6 @@ export const CustomerHistory = (props) => {
 
   useEffect(() => {
     retrive();
-    // fetch(`http://192.168.61.12:3000/data?query=
-    // select * from servicedetails where (store_email='${tech_details.email}' and status='Rejected') or (store_email='${tech_details.email}' and status='Completed');`)
-    //   .then((response) => response.json())
-    // .then((json) => setSer_dtls(json));
-    // .catch((error) => alert(error));
-    // .finally(() => alert("inserted succesfully"));
   }, []);
   console.log(ser_dtls);
 
@@ -37,7 +34,7 @@ export const CustomerHistory = (props) => {
   };
 
   return (
-    <SafeAreaView>
+    <View>
       <View style={styles.logocontainer}>
         <Image
           source={require("./logo2-removebg-preview.png")}
@@ -75,30 +72,16 @@ export const CustomerHistory = (props) => {
           ) : (
             <Text>No Requests Found Now....</Text>
           )}
-          {/* <View style={styles.Srcon}>
-            <Text style={{ fontSize: 30 }}>Geysor</Text>
-            <Text style={{ fontSize: 18 }}>Rahul Maddineni</Text>
-            <Text style={{ fontSize: 18 }}>
-              Kalyan Nagar Kulakacherla,Vikarabad Dist,Telangana{"\n"}
-            </Text>
-            <Text style={{ fontSize: 18 }}>Status: In Progress 🟡</Text>
-          </View>
-          <View style={styles.Srcon}>
-            <Text style={{ fontSize: 30 }}>Geysor</Text>
-            <Text style={{ fontSize: 18 }}>Rahul Maddineni</Text>
-            <Text style={{ fontSize: 18 }}>
-              Kalyan Nagar Kulakacherla,Vikarabad Dist,Telangana{"\n"}
-            </Text>
-            <Text style={{ fontSize: 18 }}>Status: Closed 🔵</Text>
-          </View> */}
         </ScrollView>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: { paddingTop: Constants.statusBarHeight },
+  container: {
+    //  paddingTop: Constants.statusBarHeight
+  },
   logocontainer: {
     backgroundColor: "rgba(0,0,0,0.8)",
     height: 140,

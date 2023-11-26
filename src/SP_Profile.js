@@ -9,8 +9,11 @@ import {
 } from "react-native";
 import Constants from "expo-constants";
 import { supabase } from "./Database";
+import { StatusBar } from "react-native";
 
 export const SpProfile = (props) => {
+  StatusBar.setBarStyle("light-content");
+
   const [data, setData] = useState();
   const [avgrating, setAvgrating] = useState();
 
@@ -42,6 +45,8 @@ export const SpProfile = (props) => {
       .from("servicedetails")
       .select()
       .eq("store_email", `${spdata.email}`);
+    // .neq("rating", "");
+
     setData(dat.data);
   }
 
@@ -275,8 +280,9 @@ export const SpProfile = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: Constants.statusBarHeight,
+    // paddingTop: Constants.statusBarHeight,
     backgroundColor: "white",
+    flex: 1,
   },
   logocontainer: {
     backgroundColor: "rgba(0,0,0,0.8)",

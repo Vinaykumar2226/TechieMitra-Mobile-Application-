@@ -12,7 +12,7 @@ import Constants from "expo-constants";
 
 export const TotalLoginBackground = ({ children }) => {
   return (
-    <View style={{ paddingTop: Constants.statusBarHeight }}>
+    <View>
       <ImageBackground
         source={require("../assets/bcg.jpg")}
         style={styles.back}

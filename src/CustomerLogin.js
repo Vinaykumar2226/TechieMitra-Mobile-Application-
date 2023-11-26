@@ -10,8 +10,11 @@ import {
 import { TotalLoginBackground } from "./TotalLoginBackground";
 import { supabase } from "./Database";
 // import Database from "./database_retrive";
+import { StatusBar } from "react-native";
 
 export const CustomerLogin = (props) => {
+  StatusBar.setBarStyle("light-content");
+
   // Databse Retrival
   const [dbdata, setdbData] = useState();
 
@@ -22,12 +25,6 @@ export const CustomerLogin = (props) => {
   }
 
   useEffect(() => {
-    // fetch(`http://192.168.61.12:3000/data?query=select * from customerauth`)
-    //   .then((response) => response.json())
-    //   .then((json) => setdbData(json));
-    // .catch((error) => alert(error));
-    // .finally(() => alert("inserted succesfully"));
-
     retrive();
   }, []);
   // console.log(dbdata);
@@ -119,13 +116,6 @@ export const CustomerLogin = (props) => {
               />
             </View>
           </View>
-          <TouchableOpacity>
-            <Text
-              style={{ color: "white", alignSelf: "flex-end", paddingLeft: 10 }}
-            >
-              Forgot Password?{"   "}
-            </Text>
-          </TouchableOpacity>
           <View style={{ paddingLeft: 15 }}>
             <Text style={{ color: "#FF4500", display: "none" }}>
               Incorrect Email or Username

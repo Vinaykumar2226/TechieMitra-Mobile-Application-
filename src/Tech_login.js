@@ -37,28 +37,6 @@ export const Tech_login = (props) => {
           </Text>
         </View>
       </TouchableOpacity>
-      {/* 
-      <TouchableOpacity
-        onPress={() => props.navigation.navigate("CustomerDashboard")}
-        style={{
-          paddingHorizontal: 40,
-          paddingTop: 40,
-        }}
-      >
-        <View
-          style={{
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "#6495ED",
-            height: 40,
-            borderRadius: 60,
-          }}
-        >
-          <Text style={{ color: "white", fontWeight: "bold", fontSize: 20 }}>
-            Sign In
-          </Text>
-        </View>
-      </TouchableOpacity> */}
 
       <Text
         style={{

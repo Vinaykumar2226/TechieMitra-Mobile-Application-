@@ -4,8 +4,11 @@ import { TextInput, Button } from "react-native-paper";
 import { ScrollView } from "react-native-gesture-handler";
 import { useState } from "react";
 import { supabase } from "../Database";
+import { StatusBar } from "react-native";
 
 export const Tech_Dtls = (props) => {
+  StatusBar.setBarStyle("light-content");
+
   const [techname, setTechname] = useState();
   const [techcontact, setTechcontact] = useState();
   const [workdesc, setWorkdesc] = useState();
@@ -51,18 +54,13 @@ export const Tech_Dtls = (props) => {
         .eq("store_email", `${ser_dtls.store_email}`);
 
       props.navigation.navigate("Tech_Bill", { ser_dtls, tech_dtls });
-
-      // fetch(`http://192.168.61.12:3000/data?query=
-      // update servicedetails set cost_of_spareparts='${costofspares}',name_of_tech='${techname}',work_description='${workdesc}',spare_parts='${spareparts}',tech_charges='${techcharges}',tech_contact='${techcontact}' where user_email='${ser_dtls.user_email}'`).then(
-      //   props.navigation.navigate("Tech_Bill", { ser_dtls, tech_dtls })
-      // );
     } else {
       alert("Enter all the fields");
     }
   }
 
   return (
-    <SafeAreaView>
+    <View>
       <View style={styles.logocontainer}>
         <Image
           source={require("./logo2-removebg-preview.png")}
@@ -118,7 +116,7 @@ export const Tech_Dtls = (props) => {
           </View>
         </ScrollView>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 

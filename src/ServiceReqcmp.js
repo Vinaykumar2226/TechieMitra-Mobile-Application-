@@ -1,8 +1,12 @@
 import react from "react";
 import { StyleSheet, Text, Image, View, TouchableOpacity } from "react-native";
 import Constants from "expo-constants";
+StatusBar.setBarStyle("light-content");
+import { StatusBar } from "react-native";
 
 export const ServiceReqcmp = (props) => {
+  StatusBar.setBarStyle("light-content");
+
   console.log(props.route.params.cusdata);
   const backbtn = () => {
     props.navigation.goBack();
@@ -47,8 +51,9 @@ export const ServiceReqcmp = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: Constants.statusBarHeight,
+    // paddingTop: Constants.statusBarHeight,
     backgroundColor: "white",
+    flex: 1,
   },
   logocontainer: {
     backgroundColor: "rgba(0,0,0,0.8)",

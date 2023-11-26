@@ -10,10 +10,13 @@ import {
 import Constants from "expo-constants";
 import { TextInput, Button } from "react-native-paper";
 import { supabase } from "./Database";
+import { StatusBar } from "react-native";
 
 //import { ScrollView } from "react-native-gesture-handler";
 
 export const CustomerDetails = (props) => {
+  StatusBar.setBarStyle("light-content");
+
   console.log(props.route.params.cusdata);
   const cusdata = props.route.params.cusdata;
   const [cusname, setCusname] = useState();
@@ -54,9 +57,6 @@ export const CustomerDetails = (props) => {
       sendData();
       props.navigation.navigate("ServiceReqcmp", { cusdata });
 
-      // fetch(
-      //   `http://192.168.61.12:3000/data?query=insert into servicedetails(customername,appliance,adress,user_email,location,customer_contact,serviceprovider,service_description,owner_name,store_contact,store_adress,store_email,status) values('${cusdata.CustomerName}','${cusdata.Appliance}','${cusdata.Adress}','${cusdata.Email}','${cusdata.Location}','${cusdata.customer_contact}','${cusdata.SP}','${cusdata.ServiceDescription}','${cusdata.store_owner}','${cusdata.store_contact}','${cusdata.store_adress}','${cusdata.store_email}','Open')`
-      // ).then(() => props.navigation.navigate("ServiceReqcmp", { cusdata }));
     } else {
       alert("Enter all the fields");
     }
@@ -140,8 +140,9 @@ export const CustomerDetails = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: Constants.statusBarHeight,
+    // paddingTop: Constants.statusBarHeight,
     backgroundColor: "white",
+    flex: 1,
   },
   logocontainer: {
     backgroundColor: "rgba(0,0,0,0.8)",

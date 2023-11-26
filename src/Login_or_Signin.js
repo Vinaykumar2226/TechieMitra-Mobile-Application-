@@ -9,8 +9,11 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { TotalLoginBackground } from "./TotalLoginBackground";
+import { StatusBar } from "react-native";
 
 export const Login_or_Signin = (props) => {
+  StatusBar.setBarStyle("light-content");
+
   // const myname = route.params.myname;
   // console.log(props.route.params.myname);
   return (

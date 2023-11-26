@@ -7,11 +7,14 @@ import { Tech_History } from "./Tech_History";
 import { useEffect, useState } from "react";
 import { Alert } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
+import { StatusBar } from "react-native";
 
 import { BackHandler } from "react-native";
 // import { white } from "react-native-paper/lib/typescript/styles/colors";
 
 export const Tech_Dashboard = (props) => {
+  StatusBar.setBarStyle("light-content");
+
   const [boool, setBoool] = useState(true);
   const tech_details = props.route.params;
   console.log(props.route.params);
@@ -22,7 +25,7 @@ export const Tech_Dashboard = (props) => {
         // Display an alert when the back button is pressed
         Alert.alert(
           "Exit App",
-          "Are you sure you want to logged out and exit?",
+          "Are you sure you want to log out?",
           [
             {
               text: "Cancel",
@@ -30,10 +33,12 @@ export const Tech_Dashboard = (props) => {
               style: "cancel",
             },
             {
-              text: "Exit",
+              text: "Yes",
               onPress: () => {
                 // Perform any additional cleanup or exit actions if needed
-                BackHandler.exitApp(); // Exit the app
+                props.navigation.goBack();
+                props.navigation.goBack();
+                props.navigation.goBack(); // Exit the app
               },
             },
           ],
@@ -55,94 +60,13 @@ export const Tech_Dashboard = (props) => {
     }, [])
   );
 
-  // useEffect(() => {
-  //   const handleBackPress = () => {
-  //     // Display an alert when the back button is pressed
-  //     Alert.alert(
-  //       "Exit App",
-  //       "Are you sure you want to exit?",
-  //       [
-  //         {
-  //           text: "Cancel",
-  //           onPress: () => null, // Do nothing when canceled
-  //           style: "cancel",
-  //         },
-  //         {
-  //           text: "Exit",
-  //           onPress: () => {
-  //             // Perform any additional cleanup or exit actions if needed
-  //             // BackHandler.exitApp(); // Exit the app
-  //             console.log("Back");
-  //           },
-  //         },
-  //       ],
-  //       { cancelable: false }
-  //     );
-
-  //     return true; // Prevent default back button behavior
-  //   };
-
-  //   const backHandler = BackHandler.addEventListener(
-  //     "hardwareBackPress",
-  //     handleBackPress
-  //   );
-
-  //   // Unsubscribe from the BackPress event when the component unmounts
-  //   return () => backHandler.remove();
-  // }, []);
-  // useEffect(() => {
-  //   const backHandler = BackHandler.addEventListener(
-  //     "hardwareBackPress",
-  //     handleBackPress
-  //   );
-
-  //   return () => {
-  //     backHandler.remove();
-  //   };
-  // }, []);
-
-  // const handleBackPress = () => {
-  // Customize your back press behavior for this specific page
-  // For example, show a confirmation dialog
-  // Return true if you want to prevent the default behavior
-  // For example, show a confirmation dialog:
-  // Alert.alert(
-  //   "Confirm Exit",
-  //   "Are you sure you want to exit?",
-  //   [
-  //     {
-  //       text: "Cancel",
-  //       onPress: () => console.log("Cancel Pressed"),
-  //       style: "cancel",
-  //     },
-  //     {
-  //       text: "Exit",
-  //       onPress: () => BackHandler.exitApp(), // Exit the app
-  //     },
-  //   ],
-  //   { cancelable: false }
-  // );
-  // return true; // Prevent the default behavior
-  // };
-
-  // const handleBackPress = () => {
-  //   // Customize your back press behavior here
-  //   // For example, you can navigate back, show a confirmation dialog, etc.
-  //   // Return true if you want to prevent the default behavior (e.g., exiting the app)
-  //   alert("Hello");
-  //   // For example, navigating back:
-  //   // navigation.goBack(); // Make sure to replace "navigation" with your actual navigation prop
-
-  //   return true; // Prevent the default behavior
-  // };
-
   const serviceHistory = () => {
     props.navigation.navigate("Tech_History", { tech_details });
     // backHandler.remove();
   };
 
   return (
-    <SafeAreaView>
+    <View>
       <View style={styles.logocontainer}>
         <Image
           source={require("./logo2-removebg-preview.png")}
@@ -186,11 +110,13 @@ export const Tech_Dashboard = (props) => {
           Check
         </Button>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 const styles = StyleSheet.create({
-  container: { paddingTop: Constants.statusBarHeight },
+  container: {
+    // paddingTop: Constants.statusBarHeight
+  },
   logocontainer: {
     backgroundColor: "rgba(0,0,0,0.8)",
     height: 140,
@@ -226,11 +152,5 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     padding: 35,
     marginBottom: 15,
-    // display: "flex",
-    // justifyContent: "space-evenly",
-    // shadowOffset: { width: -2, height: 4 },
-    // shadowColor: "#171717",
-    // shadowOpacity: 0.2,
-    // shadowRadius: 3,
   },
 });

@@ -9,8 +9,11 @@ import {
   ImageBackground,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { StatusBar } from "react-native";
 
 export const Onboarding = (props) => {
+  StatusBar.setBarStyle("light-content");
+
   const translateY = new Animated.Value(0);
   // const navigation = useNavigation();
 
@@ -24,13 +27,13 @@ export const Onboarding = (props) => {
       // Animation complete, navigate to the next screen
       setTimeout(() => {
         props.navigation.navigate("Loginpagef");
-      }, 3000); // Wait for 3 seconds before navigating
+      }, 1000); // Wait for 3 seconds before navigating
     });
   }, []);
 
   return (
     <ImageBackground source={require("../assets/bcg.jpg")} style={styles.back}>
-      <SafeAreaView
+      <View
         style={{
           flex: 1,
           justifyContent: "center",
@@ -43,7 +46,7 @@ export const Onboarding = (props) => {
             transform: [
               {
                 translateY: translateY.interpolate({
-                  inputRange: [0, 0.5],
+                  inputRange: [0, 0.6],
                   outputRange: [300, 0],
                 }),
               },
@@ -55,7 +58,7 @@ export const Onboarding = (props) => {
             source={require("../assets/logo2-removebg-preview.png")}
           />
         </Animated.View>
-      </SafeAreaView>
+      </View>
     </ImageBackground>
   );
 };
@@ -65,7 +68,7 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "100%",
     justifyContent: "space-around",
-    marginTop: 30,
+    // marginTop: 30,
     // position: "relative",
   },
 });

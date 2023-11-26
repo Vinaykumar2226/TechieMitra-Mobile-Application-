@@ -25,11 +25,6 @@ export const Tech_Auth = (props) => {
 
   useEffect(() => {
     retrive();
-    // fetch(`http://192.168.61.12:3000/data?query=select * from spdtls`)
-    //   .then((response) => response.json())
-    //   .then((json) => setdbData(json));
-    // .catch((error) => alert(error));
-    // .finally(() => alert("inserted succesfully"));
   }, []);
 
   const [email, setEmail] = useState();
@@ -113,13 +108,6 @@ export const Tech_Auth = (props) => {
               />
             </View>
           </View>
-          <TouchableOpacity>
-            <Text
-              style={{ color: "white", alignSelf: "flex-end", paddingLeft: 10 }}
-            >
-              Forgot Password?{"   "}
-            </Text>
-          </TouchableOpacity>
           <View style={{ paddingLeft: 15 }}>
             <Text style={{ color: "#FF4500", display: "none" }}>
               Incorrect Email or Username

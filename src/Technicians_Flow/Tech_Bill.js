@@ -3,8 +3,11 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView } from "react-native-gesture-handler";
 import { useEffect } from "react";
 import { Button } from "react-native-paper";
+import { StatusBar } from "react-native";
 
 export const Tech_Bill = (props) => {
+  StatusBar.setBarStyle("light-content");
+
   console.log(props.route.params);
   const ser_dtls = props.route.params.ser_dtls;
   const tech_dtls = props.route.params.tech_dtls;
@@ -14,7 +17,7 @@ export const Tech_Bill = (props) => {
   // });
 
   return (
-    <SafeAreaView>
+    <View>
       <View style={styles.logocontainer}>
         <Image
           source={require("./logo2-removebg-preview.png")}
@@ -137,7 +140,7 @@ export const Tech_Bill = (props) => {
           </Button>
         </ScrollView>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 

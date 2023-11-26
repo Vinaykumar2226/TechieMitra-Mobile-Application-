@@ -5,15 +5,18 @@ import { Tech_login } from "./Tech_login";
 import { BackHandler } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import { Alert } from "react-native";
+import { StatusBar } from "react-native";
 
 export const Loginpagef = ({ navigation }) => {
+  StatusBar.setBarStyle("light-content");
+
   useFocusEffect(
     React.useCallback(() => {
       const handleBackPress = () => {
         // Display an alert when the back button is pressed
         Alert.alert(
           "Exit App",
-          "Are you sure you want to logged out and exit?",
+          "Are you sure you want to exit?",
           [
             {
               text: "Cancel",
